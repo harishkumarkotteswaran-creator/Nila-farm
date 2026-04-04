@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nila Farm</title>
+
+<style>
+body { 
+  font-family: 'Segoe UI', sans-serif; 
+  margin: 0; 
+  background: #FAF7F2;
+  animation: fadeIn 1s ease-in; 
+}
+
+/* HEADER WITH GRADIENT */
+header { 
+  background: linear-gradient(135deg, #2E7D32, #1B5E20);
+  color: white; 
+  padding: 50px 20px; 
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* TRANSPARENT LOGO BACKGROUND */
+.header-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+/* OPTIONAL DARK OVERLAY FOR BETTER TEXT VISIBILITY */
+header::after {
+  content: "";
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.15);
+}
+
+/* KEEP TEXT ABOVE OVERLAY */
+header h1, header p {
+  position: relative;
+  z-index: 2;
+}
+
+/* SECTIONS */
+section { 
+  padding: 20px;
+  max-width: 1000px; 
+  margin: auto;
+}
+
+h2 { 
+  color: #1B5E20; 
+  border-bottom: 2px solid #C8A951;
+}
+
+/* PRODUCT GRID */
+.products, .gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border: 3px solid #C8A951;
+  border-radius: 12px;
+  padding: 15px;
+  width: 220px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.card img:hover {
+  transform: scale(1.1);
+}
+
+/* BUTTON */
+button {
+  background: #1B5E20;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2E7D32;
+}
+
+/* SCROLL ANIMATION */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+th {
+  background: #f2f2f2;
+}
+
+/* LIGHTBOX */
+#lightbox {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+#lightbox img {
+  max-width:90%;
+  max-height:90%;
+}
+
+/* WHATSAPP */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  text-decoration: none;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.1);}
+  100% {transform: scale(1);}
+}
+
+@keyframes fadeIn {
+  from {opacity:0;}
+  to {opacity:1;}
+}
+</style>
+
+<script>
+// SCROLL ANIMATION
+window.addEventListener("scroll", function() {
+  document.querySelectorAll(".reveal").forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+      el.classList.add("active");
+    }
+  });
+});
+
+// LIGHTBOX
+function openLightbox(src){
+  document.getElementById("lightbox").style.display="flex";
+  document.getElementById("lightbox-img").src=src;
+}
+function closeLightbox(){
+  document.getElementById("lightbox").style.display="none";
+}
+</script>
+
+</head>
+
+<body>
+
+<header>
+  <img src="./images/logo.png" class="header-logo" alt="Nila Farm Logo">
+  <h1>NILA FARM</h1>
+  <p>Freshly Harvested • Straight from the farm to you!</p>
+</header>
+
+<section class="reveal">
+<h2>Our Products</h2>
+<div class="products">
+
+<div class="card">
+<img src="./images/oyster.png" alt="Oyster Mushroom" onclick="openLightbox(this.src)">
+<p>Oyster Mushroom</p>
+<a href="https://wa.me/916381105828?text=I want Oyster Mushroom"><button>Order Now</button></a>
+</div>
+
+<div class="card">
+<img src="./images/white-button.png" alt="White Button Mushroom" onclick="openLightbox(this.src)">
+<p>White Button Mushroom</p>
+<a href="https://wa.me/916381105828?text=I want White Button Mushroom"><button>Order Now</button></a>
+</div>
+
+<div class="card">
+<img src="./images/king.png" alt="King Mushroom" onclick="openLightbox(this.src)">
+<p>King Mushroom</p>
+<a href="https://wa.me/916381105828?text=I want King Mushroom"><button>Order Now</button></a>
+</div>
+
+<div class="card">
+<img src="./images/pink.png" alt="Pink Oyster Mushroom" onclick="openLightbox(this.src)">
+<p>Pink Oyster Mushroom</p>
+<a href="https://wa.me/916381105828?text=I want Pink Oyster Mushroom"><button>Order Now</button></a>
+</div>
+
+</div>
+</section>
+
+<section class="reveal">
+<h2>Nutrition (Per 100g)</h2>
+<table>
+<tr>
+<th>Mushroom</th><th>Calories</th><th>Protein</th><th>Carbs</th><th>Fat</th><th>Fiber</th><th>Key Nutrient</th>
+</tr>
+<tr><td>Oyster</td><td>33</td><td>3.3g</td><td>6.1g</td><td>0.4g</td><td>2.3g</td><td>Iron,Potassium</td></tr> 
+<tr><td>White Button</td><td>22</td><td>3.1g</td><td>3.3g</td><td>0.3g</td><td>1g</td><td>Vitamin D, Selenium</td></tr> 
+<tr><td>King Oyster</td><td>40</td><td>2.5g</td><td>7g</td><td>0.5g</td><td>2.9g</td><td>Vitamin B3(Niacin)</td></tr> 
+<tr><td>Pink Oyster</td><td>35</td><td>3.3g</td><td>6g</td><td>0.4g</td><td>2.4g</td><td>Antioxidants(Carotenoids)</td></tr>
+</table>
+</section>
+
+<section class="reveal">
+<h2>Gallery</h2>
+<div class="gallery">
+<div class="card">
+<img src="./images/farm1.jpg" alt="Farm View" onclick="openLightbox(this.src)">
+</div>
+<div class="card">
+<img src="./images/farm2.jpg" alt="Mushroom Growing" onclick="openLightbox(this.src)">
+</div>
+</div>
+</section>
+
+<section>
+<h2>FSSAI</h2>
+<p>Registration Number: <b>XXXXXX</b></p>
+</section>
+
+<section class="reveal">
+<h2>About Us</h2>
+<p>We grow fresh oyster mushrooms that are clean, natural, and healthy.
+Cultivated using hygienic methods- bringing you safe and nutritious food.</p>
+</section>
+
+<section>
+<h2>Reach Us</h2>
+<p><b>Phone:</b> +91 63811 05828</p>
+<p><b>Location:</b> Tirupattur, Tamil Nadu, 635602</p>
+
+<iframe 
+src="https://www.google.com/maps?q=Tirupattur%20Tamil%20Nadu&output=embed"
+width="100%" height="300" style="border:0;">
+</iframe>
+
+</section>
+
+<div id="lightbox" onclick="closeLightbox()">
+<img id="lightbox-img">
+</div>
+
+<a class="whatsapp" href="https://wa.me/916381105828?text=Hi I want to order from Nila Farm" target="_blank">
+💬
+</a>
+
+</body>
+</html>
